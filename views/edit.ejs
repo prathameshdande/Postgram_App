@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; /* Using a more modern font */
+            background: linear-gradient to bottom right, #e0f2f7, #cbebf2; /* Soft gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #34495e; /* Dark blue-gray for main text */
+        }
+
+        h1 {
+            color: #2c3e50; /* Slightly darker for the heading */
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.8em; /* Slightly larger heading */
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 45px;
+            border-radius: 15px; /* More rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+            width: 100%;
+            max-width: 550px; /* Slightly wider form */
+            display: flex;
+            flex-direction: column;
+            gap: 22px; /* Increased spacing between fields */
+            border: 1px solid #dcdcdc;
+        }
+
+        input[type="text"],
+        textarea {
+            width: calc(100% - 24px); /* Adjust for new padding */
+            padding: 14px;
+            border: 1px solid #b0c4de; /* Softer blue border */
+            border-radius: 10px; /* More rounded inputs */
+            font-size: 1.05em;
+            color: #34495e;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            background-color: #f8fcfd; /* Light background for inputs */
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #4CAF50; /* Vibrant green on focus */
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25); /* Matching green glow */
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px; /* Taller textarea */
+            line-height: 1.7;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50; /* Vibrant green update button */
+            color: white;
+            padding: 16px 30px; /* Larger button */
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em; /* Larger font on button */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            align-self: flex-end;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); /* Subtle button shadow */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049; /* Darker green on hover */
+            transform: translateY(-3px); /* More pronounced lift */
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        button[type="submit"]:active {
+            background-color: #3d8c42;
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Post</h1>
+    <form action="/instagram/<%= post.id %>?_method=PATCH" method="POST">
+        <input type="text" name="name" value="<%= post.name %>">
+        <input type="text" name="photo" value="<%= post.photo %>" required>
+        <textarea name="comments" required><%= post.comments %></textarea>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
